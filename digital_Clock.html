@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        body {
+
+            /* background-image: repeating-conic-gradient(blue, rgb(43, 41, 41) 20deg, black 40deg); */
+            background: rgb(2, 0, 36);
+            background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(212, 45, 45, 1) 35%, rgba(0, 212, 255, 1) 100%);
+            /* height: 100vh; */
+            /* width: 100vw; */
+            font-family: sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .dc {
+            color: black;
+            font-size: 4vw;
+            text-decoration-line: underline;
+            text-decoration-style: solid;
+        }
+
+        .time {
+            color: white;
+            background-color: rgba(0, 0, 0, 0.4);
+            width: 50%;
+            margin: 0 auto;
+            font-size: 6vw;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+    </style>
+</head>
+<h1 class="dc">Digital Clock</h1>
+<h1 id="data" class="time"></h1>
+<!-- <h1></h1> -->
+
+<body onload="showTime()">
+    <script>
+
+        function showTime() {
+            var d = new Date();
+            var h = d.getHours();
+            var m = d.getMinutes();
+            var s = d.getSeconds();
+            var session = "AM";
+
+            //clock 1 will start from 1
+            //isko comment se 13 se start hoga
+            //isko comment out se 1 se start hoga
+            // if (h > 12) {
+            //     h = h - 12;
+            //     // h = 13 - 12 = 1
+            // }
+
+            if (h >= 12) {
+                session = "PM"
+            }
+
+            h = h < 10 ? "0" + h : h;
+            m = m < 10 ? "0" + m : m;
+            s = s < 10 ? "0" + s : s;
+
+            var time = h + " : " + m + " : " + s + " " + session;
+
+
+            document.getElementById('data').innerHTML = time;
+            // document.getElementsByTagName('h1')[0].innerHTML = time;
+
+            //1000 miliSecond means 1 sec
+            setTimeout(showTime, 1000);
+        }
+
+    </script>
+</body>
+
+</html>
